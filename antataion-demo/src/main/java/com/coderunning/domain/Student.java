@@ -5,19 +5,20 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 @Component
 public class Student {
 
 
-    @Value("zhangfei")
+    @Value("${name}")
     private String name;
 
-    @Value("21")
+    @Value("${age}")
     private Integer age;
 
 
-    @Autowired(required = false)
-    @Qualifier(value = "school")
+    @Resource(name = "mySchool")
     private School school;
 
 
