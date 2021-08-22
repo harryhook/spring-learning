@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>antataion-demo</module>
+        <module>aop-demo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
