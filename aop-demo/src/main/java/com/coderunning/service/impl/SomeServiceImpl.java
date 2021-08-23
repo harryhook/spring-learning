@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service("someService")
 public class SomeServiceImpl implements SomeService {
+
     @Override
     public void doSomething() {
         System.out.println("do something");

@@ -23,9 +23,10 @@ public class AopDemoApplicationTest {
         SomeService someService = context.getBean("someService", SomeService.class);
 
 
-        InvocationHandler invocationHandler = new MethodInvokeHandler(someService);
-
-        someService = (SomeService) Proxy.newProxyInstance(someService.getClass().getClassLoader(), someService.getClass().getInterfaces(), invocationHandler);
+        System.out.println(someService.getClass().getName());
+//        InvocationHandler invocationHandler = new MethodInvokeHandler(someService);
+//
+//        someService = (SomeService) Proxy.newProxyInstance(someService.getClass().getClassLoader(), someService.getClass().getInterfaces(), invocationHandler);
 
         someService.doSomething();
 

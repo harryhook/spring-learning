@@ -16,4 +16,12 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>5.2.5.RELEASE</version>
+        </dependency>
+    </dependencies>
+
 </project>
