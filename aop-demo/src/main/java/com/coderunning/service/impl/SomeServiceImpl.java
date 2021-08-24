@@ -1,9 +1,10 @@
 package com.coderunning.service.impl;
 
+import com.coderunning.domain.User;
 import com.coderunning.service.SomeService;
 import org.springframework.stereotype.Service;
 
-@Service("someService")
+
 public class SomeServiceImpl implements SomeService {
 
     @Override
@@ -12,8 +13,14 @@ public class SomeServiceImpl implements SomeService {
     }
 
     @Override
-    public void doOtherThing() {
-        System.out.println("do other thing");
+    public User doOtherThing(String name) {
+
+        User user  = new User();
+        user.setAge(11);
+        user.setName(name);
+
+        System.out.println(user);
+        return user;
 
     }
 }

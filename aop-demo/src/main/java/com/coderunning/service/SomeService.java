@@ -1,7 +1,10 @@
 package com.coderunning.service;
 
+import com.coderunning.domain.User;
+
 public interface SomeService {
+
     void doSomething();
 
-    void doOtherThing();
+    User doOtherThing(String name);
 }

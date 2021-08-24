@@ -20,7 +20,7 @@ public class AopDemoApplicationTest {
 
         ApplicationContext context = new ClassPathXmlApplicationContext(config);
 
-        SomeService someService = context.getBean("someService", SomeService.class);
+        SomeService someService = (SomeService)context.getBean("someService");
 
 
         System.out.println(someService.getClass().getName());
@@ -30,6 +30,6 @@ public class AopDemoApplicationTest {
 
         someService.doSomething();
 
-        someService.doOtherThing();
+        someService.doOtherThing("111");
     }
 }

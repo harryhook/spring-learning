@@ -25,11 +25,20 @@
 如何理解面向切面编程
 1. 找到切面？ 哪些业务需要增强
 2. JointPoint：连接点
-3. PointCut ： 切入点
-4. Advice: 切面的执行时间
+3. PointCut ： 切入点：一个或多多个 jointPoint
+4. Advice: 切面的执行时间 @Before， @After, @Around
 
 Spring 自带 aop，但是用的更多的是 aspectj
 
+有接口使用 proxy 动态代理， proxy-target-class="true"时使用 CGLib 
+```java
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+```
 
 
 ## aspectj 给已经存在的方法增加新的功能
+
+@Before: 方法执行前
+@After: 方法执行后
+@AfterReturning: 方法执行后, 可以改变返回的结果
+@Around: 执行前后都能增强， 能够控制目标方法是否执行， 而且能修改原方法的执行结果
