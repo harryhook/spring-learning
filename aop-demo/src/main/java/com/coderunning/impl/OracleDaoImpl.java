@@ -1,8 +1,7 @@
-package com.coderunning.dao.impl;
+package com.coderunning.impl;
 
-import com.coderunning.dao.UserDao;
+import com.coderunning.UserDao;
 import com.coderunning.domain.User;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 @Repository("oracleDao")

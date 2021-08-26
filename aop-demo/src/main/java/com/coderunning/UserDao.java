@@ -1,4 +1,4 @@
-package com.coderunning.dao;
+package com.coderunning;
 
 import com.coderunning.domain.User;
 

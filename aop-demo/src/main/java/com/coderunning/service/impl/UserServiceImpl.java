@@ -1,6 +1,6 @@
 package com.coderunning.service.impl;
 
-import com.coderunning.dao.UserDao;
+import com.coderunning.UserDao;
 import com.coderunning.domain.User;
 import com.coderunning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
