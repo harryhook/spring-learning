@@ -29,11 +29,13 @@ public class BuyGoodsServiceImpl implements BuyGoodsService {
 
         Goods goods = goodsDao.selectGoods(goodsId);
 
-        if(goods == null) {
+        if (goods == null) {
             throw new RuntimeException("商品不存在");
-        } else if(goods.getAmount() < nums) {
+        } else if (goods.getAmount() < nums) {
             throw new RuntimeException("库存不足");
         }
+        goods.setAmount(goods.getAmount() - nums);
+        goodsDao.updateGoods(goods);
 
         Sales sales = new Sales();
         sales.setGid(goodsId);
