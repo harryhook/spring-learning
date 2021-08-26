@@ -2,6 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
 
+<mapper namespace="com.coderunning.dao.StudentDao">
+    <insert id="insertStudent" >
+        insert into user (id, name, age, email_address )
+        values (#{id}, #{name}, #{age}, #{email});
+    </insert>
+
+    <select id="selectStudents" resultType="com.coderunning.domain.Student" >
+        select id, name, age, email_address as email from user order by id desc
+    </select>
 </mapper>
