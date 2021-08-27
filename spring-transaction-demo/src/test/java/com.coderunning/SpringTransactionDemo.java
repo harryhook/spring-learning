@@ -26,7 +26,7 @@ public class SpringTransactionDemo {
 
         BuyGoodsService buyGoodsService = applicationContext.getBean("buyGoodsService", BuyGoodsService.class);
 
-        buyGoodsService.buy(1, 10);
+        buyGoodsService.buy(11, 10);
 
 
     }
