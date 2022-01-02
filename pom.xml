@@ -8,6 +8,7 @@
         <module>aop-demo</module>
         <module>spring-mybatis-demo</module>
         <module>spring-transaction-demo</module>
+        <module>spring-data-demo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
