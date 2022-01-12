@@ -32,6 +32,9 @@ public class GcTestController {
     }
 
 
+    /**
+     * -Xmx10m -Xmn2m -Xss256k -XX:+PrintGC -XX:+UseConcMarkSweepGC -Xloggc:/Users/chenhaowei/logs/gc2.log
+     */
 }
 
 class Greeting {
