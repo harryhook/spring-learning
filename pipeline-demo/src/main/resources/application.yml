@@ -1,0 +1,18 @@
+liteflow:
+  rule-source: config/flow.xml
+  thread-executor-class: com.yomahub.liteflow.thread.LiteFlowDefaultExecutorBuilder
+  when-max-workers: 16
+  when-queue-limit: 512
+  retry-count: 0
+  monitor:
+    enable-log: true
+    queue-limit: 300
+    delay: 10000
+    period: 10000
+  parse-on-start: true
+  support-multiple-type: false
+  enable: true
+  when-max-wait-seconds: 20
+  print-banner: true
+  zk-node: /lite-flow/flow
+  slot-size: 1024
