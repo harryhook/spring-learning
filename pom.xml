@@ -9,6 +9,7 @@
         <module>spring-mybatis-demo</module>
         <module>spring-transaction-demo</module>
         <module>spring-data-demo</module>
+        <module>javaagent-demo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
