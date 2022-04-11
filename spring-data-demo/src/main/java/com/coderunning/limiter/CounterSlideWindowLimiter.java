@@ -75,11 +75,11 @@ public class CounterSlideWindowLimiter {
     //测试
     public static void main(String[] args) throws InterruptedException {
         //每秒20个请求
-        int limit = 20;
+        int limit = 10;
         CounterSlideWindowLimiter counterSildeWindowLimiter = new CounterSlideWindowLimiter(1000, limit, 10);
         int count = 0;
 
-        Thread.sleep(1000);
+
         //计数器滑动窗口算法模拟100组间隔30ms的50次请求
         System.out.println("计数器滑动窗口算法测试开始");
         System.out.println("开始模拟100组间隔150ms的50次请求");
@@ -91,7 +91,7 @@ public class CounterSlideWindowLimiter {
                     count++;
                 }
             }
-            Thread.sleep(150);
+            Thread.sleep(10);
             //模拟50次请求，看多少能通过
             for (int i = 0; i < 50; i++) {
                 if (counterSildeWindowLimiter.tryAcquire()) {
