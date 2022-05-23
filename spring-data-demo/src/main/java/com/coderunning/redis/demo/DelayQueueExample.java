@@ -1,4 +1,4 @@
-package com.coderunning.sevice;
+package com.coderunning.redis.demo;
 
 import org.springframework.data.redis.connection.jedis.JedisUtils;
 import redis.clients.jedis.Jedis;

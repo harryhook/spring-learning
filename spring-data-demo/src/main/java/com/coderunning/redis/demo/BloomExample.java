@@ -1,27 +1,27 @@
-package com.coderunning.sevice;
+package com.coderunning.redis.demo;
 
-import org.springframework.data.redis.connection.jedis.JedisUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.util.Arrays;
 
 public class BloomExample {
-    private static final String _KEY = "user";
+    private static final String _KEY = "userlist";
 
     public static void main(String[] args) {
         JedisPool pool = new JedisPool( "localhost", 6379);
         Jedis jedis =pool.getResource();
         for (int i = 1; i < 10001; i++) {
             bfAdd(jedis, _KEY, "user_" + i);
-            boolean exists = bfExists(jedis, _KEY, "user_" + i);
-            if (!exists) {
-                System.out.println("未找到数据 i=" + i);
+            boolean exists = bfExists(jedis, _KEY, "user_" + (i + 1));
+            if (exists) {
+                System.out.println("找到了" + i);
                 break;
             }
         }
         System.out.println("执行完成");
     }
+
     /**
      * 添加元素
      * @param jedis Redis 客户端
@@ -38,6 +38,7 @@ public class BloomExample {
         }
         return false;
     }
+
     /**
      * 查询元素是否存在
      * @param jedis Redis 客户端
