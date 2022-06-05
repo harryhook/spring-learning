@@ -28,6 +28,11 @@
             <artifactId>redisson</artifactId>
             <version>3.16.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>4.0.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
