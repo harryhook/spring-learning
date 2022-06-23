@@ -24,4 +24,9 @@ public class StudentServiceImpl implements StudentService {
 
         return studentDao.selectStudents();
     }
+
+    @Override
+    public String queryStudentByName(String name) {
+        return null;
+    }
 }

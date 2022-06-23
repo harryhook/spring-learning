@@ -10,4 +10,5 @@ public interface StudentService {
 
     List<Student> queryStudent();
 
+    String queryStudentByName(String name);
 }
