@@ -1,8 +1,13 @@
 package com.coderunning;
 
+import com.coderunning.binding.MapperProxyFactory;
+import com.coderunning.binding.MapperRegistry;
+import com.coderunning.dao.StudentDao;
 import com.coderunning.domain.Student;
-import com.coderunning.factory.MapperProxyFactory;
 import com.coderunning.service.StudentService;
+import com.coderunning.session.SqlSession;
+import com.coderunning.session.SqlSessionFactory;
+import com.coderunning.session.defaults.DefaultSqlSessionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -94,10 +99,27 @@ public class MybatisDemoTest {
         // 链接数据库
         sqlSession.put("com.coderunning.service.StudentService.queryStudentByName", "模拟select * from student");
 
-        StudentService studentService = mapperProxyFactory.newInstance(sqlSession);
-        String res = studentService.queryStudentByName("111");
+//        StudentService studentService = mapperProxyFactory.newInstance(sqlSession);
+//        String res = studentService.queryStudentByName("111");
 
-        logger.info("res: " + res);
+//        logger.info("res: " + res);
+    }
+
+
+    @Test
+    public void testMapperRegistry() {
+
+        // 1. 注册 Mapper
+        MapperRegistry registry = new MapperRegistry();
+        registry.addMappers("com.coderunning.service");
+
+        // 2. 从 SqlSession 工厂获取 Session
+        SqlSessionFactory sqlSessionFactory = new DefaultSqlSessionFactory(registry);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        StudentService studentService = sqlSession.getMapper(StudentService.class);
+
+        logger.info("res: " + studentService.queryStudentByName("111"));
     }
 }
 

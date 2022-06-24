@@ -1,4 +1,6 @@
-package com.coderunning.proxy;
+package com.coderunning.binding;
+
+import com.coderunning.session.SqlSession;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
@@ -13,10 +15,10 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
 
     private static final long serialVersionUID = 783644796303395867L;
 
-    private Map<String, String> sqlSession;
+    private SqlSession sqlSession;
     private final Class<T> mapperInterface;
 
-    public MapperProxy(Map<String, String> sqlSession, Class<T> mapperInterface) {
+    public MapperProxy(SqlSession sqlSession, Class<T> mapperInterface) {
         this.sqlSession = sqlSession;
         this.mapperInterface = mapperInterface;
     }
@@ -28,6 +30,6 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
         if(Object.class.equals(method.getDeclaringClass())) {
             return method.invoke(this, args);
         }
-        return "你被代理了 " + sqlSession.get(mapperInterface.getName() + "." + method.getName());
+        return "你被代理了 " + sqlSession.getMapper(this.mapperInterface);
     }
 }

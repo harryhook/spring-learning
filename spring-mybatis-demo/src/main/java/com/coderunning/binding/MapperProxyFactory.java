@@ -1,6 +1,6 @@
-package com.coderunning.factory;
+package com.coderunning.binding;
 
-import com.coderunning.proxy.MapperProxy;
+import com.coderunning.session.SqlSession;
 
 import java.lang.reflect.Proxy;
 import java.util.Map;
@@ -14,7 +14,7 @@ public class MapperProxyFactory<T>{
         this.mapperInterface = mapperInterface;
     }
 
-    public T newInstance(Map<String, String> sqlSession) {
+    public T newInstance(SqlSession sqlSession) {
 
         MapperProxy<T> mapperProxy = new MapperProxy<>(sqlSession, mapperInterface);
 
