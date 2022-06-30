@@ -1,53 +1,50 @@
 package com.coderunning.redis.demo;
 
+import io.netty.util.concurrent.DefaultThreadFactory;
+
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.concurrent.DelayQueue;
-import java.util.concurrent.Delayed;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class DelayTest {
+
+
     public static void main(String[] args) throws InterruptedException {
-        DelayQueue delayQueue = new DelayQueue();
-        delayQueue.put(new DelayElement(1000));
-        delayQueue.put(new DelayElement(3000));
-        delayQueue.put(new DelayElement(5000));
-        System.out.println("开始时间：" + DateFormat.getDateTimeInstance().format(new Date()));
-        while (!delayQueue.isEmpty()) {
-            System.out.println(delayQueue.take());
+        ThreadPoolExecutor executorService = new ThreadPoolExecutor(2, 3, 30, TimeUnit.SECONDS, new LinkedBlockingQueue<>(2), new DefaultThreadFactory("test"), new ThreadPoolExecutor.DiscardPolicy());
+        //每隔两秒打印线程池的信息
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+        scheduledExecutorService.scheduleAtFixedRate(() -> {
+            System.out.println("=====================================thread-pool-info:" + new Date() + "=====================================");
+            System.out.println("CorePoolSize:" + executorService.getCorePoolSize());
+            System.out.println("PoolSize:" + executorService.getPoolSize());
+            System.out.println("ActiveCount:" + executorService.getActiveCount());
+            System.out.println("KeepAliveTime:" + executorService.getKeepAliveTime(TimeUnit.SECONDS));
+            System.out.println("QueueSize:" + executorService.getQueue().size());
+        }, 0, 2, TimeUnit.SECONDS);
+        try {
+            //同时提交5个任务,模拟达到最大线程数
+            for (int i = 0; i < 5; i++) {
+                executorService.execute(new Task());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }        //休眠10秒，打印日志，观察线程池状态
+        Thread.sleep(10000);        //每隔3秒提交一个任务
+        while (true) {
+            Thread.sleep(3000);
+            executorService.submit(new Task());
         }
-        System.out.println("结束时间：" + DateFormat.getDateTimeInstance().format(new Date()));
     }
 
-    static class DelayElement implements Delayed {
-        // 延迟截止时间（单面：毫秒）
-        long delayTime = System.currentTimeMillis();
-
-        public DelayElement(long delayTime) {
-            this.delayTime = (this.delayTime + delayTime);
-        }
-
+    static class Task implements Runnable {
         @Override
-        // 获取剩余时间
-        public long getDelay(TimeUnit unit) {
-            return unit.convert(delayTime - System.currentTimeMillis(), TimeUnit.MILLISECONDS);
-        }
-
-        @Override
-        // 队列里元素的排序依据
-        public int compareTo(Delayed o) {
-            if (this.getDelay(TimeUnit.MILLISECONDS) > o.getDelay(TimeUnit.MILLISECONDS)) {
-                return 1;
-            } else if (this.getDelay(TimeUnit.MILLISECONDS) < o.getDelay(TimeUnit.MILLISECONDS)) {
-                return -1;
-            } else {
-                return 0;
+        public void run() {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        }
-
-        @Override
-        public String toString() {
-            return DateFormat.getDateTimeInstance().format(new Date(delayTime));
+            System.out.println(Thread.currentThread() + "-执行任务");
         }
     }
 }
