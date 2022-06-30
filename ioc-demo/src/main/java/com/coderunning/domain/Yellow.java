@@ -1,8 +1,11 @@
 package com.coderunning.domain;
 
+import org.springframework.context.annotation.ComponentScan;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+@ComponentScan
 public class Yellow {
 
     public Yellow() {

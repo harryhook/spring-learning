@@ -3,10 +3,13 @@ package com.coderunning;
 import com.coderunning.config.ColorConfig;
 import com.coderunning.config.LifecycleConfig;
 import com.coderunning.config.PersonConfig;
+import com.coderunning.config.PropertiesConfig;
+import com.coderunning.dao.ColorDao;
 import com.coderunning.domain.Blue;
 import com.coderunning.domain.Person;
 import com.coderunning.domain.Red;
 import com.coderunning.factory.ColorFactoryBean;
+import com.coderunning.service.IocService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -102,10 +105,20 @@ public class IocDemoApplicationTest {
         context.close();
     }
 
+    @Test
+    public void testSetProperties() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PropertiesConfig.class);
+
+        printBeanDefinitionNames(context);
+
+
+        context.close();
+    }
+
     private void printBeanDefinitionNames(ApplicationContext context) {
         String[] definationNames = context.getBeanDefinitionNames();
         for (String definationName : definationNames) {
-            System.out.println(definationName);
+             System.out.println(definationName);
         }
     }
 

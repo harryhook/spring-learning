@@ -1,9 +1,12 @@
 package com.coderunning.domain;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 public class Person {
+    @Value("11")
     private Integer age;
+    @Value("zhangsan")
     private String name;
 
     public Person() {
