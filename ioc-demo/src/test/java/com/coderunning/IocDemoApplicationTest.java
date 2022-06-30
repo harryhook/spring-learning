@@ -98,7 +98,6 @@ public class IocDemoApplicationTest {
     @Test
     public void testLifeCycle() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LifecycleConfig.class);
-        Blue blue = context.getBean(Blue.class);
 
         context.close();
     }
