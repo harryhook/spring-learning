@@ -1,7 +1,9 @@
 package com.coderunning;
 
 import com.coderunning.config.ColorConfig;
+import com.coderunning.config.LifecycleConfig;
 import com.coderunning.config.PersonConfig;
+import com.coderunning.domain.Blue;
 import com.coderunning.domain.Person;
 import com.coderunning.domain.Red;
 import com.coderunning.factory.ColorFactoryBean;
@@ -91,6 +93,14 @@ public class IocDemoApplicationTest {
         System.out.println(colorFactoryBean.equals(colorFactoryBean2));
         Object colorFactoryBean4 = context.getBean("&colorFactoryBean");
         System.out.println(colorFactoryBean4.getClass());
+    }
+
+    @Test
+    public void testLifeCycle() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(LifecycleConfig.class);
+        Blue blue = context.getBean(Blue.class);
+
+        context.close();
     }
 
     private void printBeanDefinitionNames(ApplicationContext context) {
