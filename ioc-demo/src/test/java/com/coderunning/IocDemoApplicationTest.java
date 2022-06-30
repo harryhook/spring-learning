@@ -1,7 +1,11 @@
 package com.coderunning;
 
+import com.coderunning.config.ColorConfig;
 import com.coderunning.config.PersonConfig;
 import com.coderunning.domain.Person;
+import com.coderunning.domain.Red;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +17,7 @@ import java.util.Map;
 
 @SpringBootTest
 public class IocDemoApplicationTest {
+
 
     @Test
     public void testXml() {
@@ -67,6 +72,19 @@ public class IocDemoApplicationTest {
         // 获取环境变量名称
         Environment environment = context.getEnvironment();
         System.out.println(environment.getProperty("os.name"));
+    }
+
+    @Test
+    public void testImport() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(ColorConfig.class);
+        printBeanDefinitionNames(context);
+    }
+
+    private void printBeanDefinitionNames(ApplicationContext context) {
+        String[] definationNames = context.getBeanDefinitionNames();
+        for (String definationName : definationNames) {
+            System.out.println(definationName);
+        }
     }
 
 }
