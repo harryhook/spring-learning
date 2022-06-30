@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--全局配置文件的根元素-->
+<configuration>
+    <!--enviroments表示环境配置，可以配置成开发环境(development)、测试环境(test)、生产环境(production)等-->
+    <environments default="development">
+        <environment id="development">
+            <!--transactionManager： 事务管理器，属性type只有两个取值：JDBC和MANAGED-->
+            <transactionManager type="MANAGED" />
+            <!--dataSource: 数据源配置-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/mine_test"/>
+                <property name="username" value="root" />
+                <property name="password" value="0.0.0chw" />
+            </dataSource>
+        </environment>
+    </environments>
+    <!--mappers文件路径配置-->
+    <mappers>
+        <mapper resource="mapper/StudentDao.xml"/>
+    </mappers>
+</configuration>
+
