@@ -28,10 +28,24 @@ public class IocDemoApplicationTest {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(PersonConfig.class);
 
-        String[] names = context.getBeanDefinitionNames();
-        for (String name : names) {
-            System.out.println(name);
-        }
+        Person person = context.getBean(Person.class);
+        System.out.println(person);
+        Person person2 = context.getBean(Person.class);
+        System.out.println(person2.equals(person));
+
+    }
+
+    @Test
+    public void testScope() {
+
+
+        ApplicationContext context = new AnnotationConfigApplicationContext(PersonConfig.class);
+
+        Person person = context.getBean(Person.class);
+        System.out.println(person);
+        Person person2 = context.getBean(Person.class);
+        System.out.println(person2);
+        System.out.println(person2.equals(person));
 
     }
 }

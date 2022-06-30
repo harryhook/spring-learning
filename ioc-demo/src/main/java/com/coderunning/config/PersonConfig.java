@@ -8,12 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 @Configuration
-@ComponentScans(value = {@ComponentScan(value = "com.coderunning",
-        includeFilters = {@ComponentScan.Filter(type = FilterType.CUSTOM, classes = MyFilter.class)},
-        useDefaultFilters = false)})
 public class PersonConfig {
 
     @Bean("person")
+    @Scope("singleton")
     public Person person() {
         return new Person(18, "张三");
     }
