@@ -4,6 +4,7 @@ import com.coderunning.config.ColorConfig;
 import com.coderunning.config.PersonConfig;
 import com.coderunning.domain.Person;
 import com.coderunning.domain.Red;
+import com.coderunning.factory.ColorFactoryBean;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -78,6 +79,18 @@ public class IocDemoApplicationTest {
     public void testImport() {
         ApplicationContext context = new AnnotationConfigApplicationContext(ColorConfig.class);
         printBeanDefinitionNames(context);
+    }
+
+    @Test
+    public void testFactoryBean() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(ColorConfig.class);
+        Object colorFactoryBean = context.getBean("colorFactoryBean");
+        Object colorFactoryBean2 = context.getBean("colorFactoryBean");
+
+        System.out.println(colorFactoryBean.getClass());
+        System.out.println(colorFactoryBean.equals(colorFactoryBean2));
+        Object colorFactoryBean4 = context.getBean("&colorFactoryBean");
+        System.out.println(colorFactoryBean4.getClass());
     }
 
     private void printBeanDefinitionNames(ApplicationContext context) {
