@@ -1,4 +1,4 @@
-package com.coderunning.service.impl;
+package com.coderunning.service;
 
 import com.coderunning.dao.GoodsDao;
 import com.coderunning.dao.SalesDao;

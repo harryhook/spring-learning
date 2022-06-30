@@ -5,10 +5,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
+    <context:component-scan base-package="com.coderunning" />
 
-    <bean id="myAspect" class="com.coderunning.aspect.MyAspect"/>
+    <bean id = "person " class="com.coderunning.domain.Person">
+        <property name="name" value="coderunning"/>
+        <property name="age" value="28"/>
+    </bean>
 
-    <bean id="someService" class="com.coderunning.service.SomeServiceImpl"/>
-
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
 </beans>

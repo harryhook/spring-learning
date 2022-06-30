@@ -30,7 +30,7 @@
 
     </bean>
 
-    <bean id="studentService" class="com.coderunning.service.impl.StudentServiceImpl">
+    <bean id="studentService" class="com.coderunning.service.StudentServiceImpl">
         <property name="studentDao" ref="studentDao"/>
     </bean>
 </beans>
