@@ -1,9 +1,6 @@
 package com.coderunning;
 
-import com.coderunning.config.ColorConfig;
-import com.coderunning.config.LifecycleConfig;
-import com.coderunning.config.PersonConfig;
-import com.coderunning.config.PropertiesConfig;
+import com.coderunning.config.*;
 import com.coderunning.dao.ColorDao;
 import com.coderunning.domain.Person;
 import com.coderunning.service.ColorService;
@@ -14,6 +11,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.Environment;
 
+import javax.sql.DataSource;
 import java.util.Map;
 
 @SpringBootTest
@@ -115,10 +113,19 @@ public class IocDemoApplicationTest {
         context.close();
     }
 
+    @Test
+    public void testProfile() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProfileConfig.class);
+        String[] sourceNames = context.getBeanNamesForType(DataSource.class);
+        for (String sourceName : sourceNames) {
+            System.out.println(sourceName);
+        }
+    }
+
     private void printBeanDefinitionNames(ApplicationContext context) {
         String[] definationNames = context.getBeanDefinitionNames();
         for (String definationName : definationNames) {
-             System.out.println(definationName);
+            System.out.println(definationName);
         }
     }
 
