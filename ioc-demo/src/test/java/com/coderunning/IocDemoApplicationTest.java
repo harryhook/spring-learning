@@ -5,14 +5,8 @@ import com.coderunning.config.LifecycleConfig;
 import com.coderunning.config.PersonConfig;
 import com.coderunning.config.PropertiesConfig;
 import com.coderunning.dao.ColorDao;
-import com.coderunning.domain.Blue;
 import com.coderunning.domain.Person;
-import com.coderunning.domain.Red;
-import com.coderunning.factory.ColorFactoryBean;
 import com.coderunning.service.ColorService;
-import com.coderunning.service.IocService;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -84,6 +78,8 @@ public class IocDemoApplicationTest {
     @Test
     public void testImport() {
         ApplicationContext context = new AnnotationConfigApplicationContext(ColorConfig.class);
+
+        System.out.println("原始容器： " + context);
         printBeanDefinitionNames(context);
     }
 
