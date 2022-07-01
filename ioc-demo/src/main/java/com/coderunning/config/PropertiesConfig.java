@@ -11,9 +11,10 @@ import org.springframework.context.annotation.Primary;
 public class PropertiesConfig {
 
     @Bean("colorDao2")
-    @Primary
     public ColorDao colorDao() {
-        return new ColorDao();
+        ColorDao colorDao =  new ColorDao();
+        colorDao.setLabel("2");
+        return colorDao;
     }
 
 }

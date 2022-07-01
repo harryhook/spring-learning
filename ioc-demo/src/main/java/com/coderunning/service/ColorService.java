@@ -2,12 +2,16 @@ package com.coderunning.service;
 
 import com.coderunning.dao.ColorDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.inject.Inject;
+
 @Service
 public class ColorService {
-    @Autowired(required = false)
+    @Autowired
     private ColorDao colorDao2;
 
     public void printColor() {
@@ -17,7 +21,7 @@ public class ColorService {
     @Override
     public String toString() {
         return "ColorService{" +
-                "red=" + colorDao2 +
+                "colorDao=" + colorDao2 +
                 '}';
     }
 }

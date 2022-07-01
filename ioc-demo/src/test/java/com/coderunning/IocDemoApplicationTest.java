@@ -9,6 +9,7 @@ import com.coderunning.domain.Blue;
 import com.coderunning.domain.Person;
 import com.coderunning.domain.Red;
 import com.coderunning.factory.ColorFactoryBean;
+import com.coderunning.service.ColorService;
 import com.coderunning.service.IocService;
 import org.junit.After;
 import org.junit.Before;
@@ -109,8 +110,11 @@ public class IocDemoApplicationTest {
     public void testSetProperties() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(PropertiesConfig.class);
 
-        printBeanDefinitionNames(context);
+        ColorService colorService = context.getBean(ColorService.class);
+        System.out.println(colorService);
 
+        ColorDao colorDao = (ColorDao) context.getBean("colorDao");
+        System.out.println(colorDao);
 
         context.close();
     }
