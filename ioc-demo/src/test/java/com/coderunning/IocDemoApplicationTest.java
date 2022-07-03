@@ -116,6 +116,8 @@ public class IocDemoApplicationTest {
     @Test
     public void testProfile() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProfileConfig.class);
+        context.getEnvironment().setActiveProfiles("test");
+        context.register(ProfileConfig.class);
         String[] sourceNames = context.getBeanNamesForType(DataSource.class);
         for (String sourceName : sourceNames) {
             System.out.println(sourceName);

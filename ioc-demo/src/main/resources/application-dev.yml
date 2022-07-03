@@ -1,0 +1,7 @@
+
+
+db:
+  user: root
+  password: 0.0.0123
+  url: jdbc:mysql://localhost:3306/mine_test
+  driver: com.mysql.jdbc.Driver

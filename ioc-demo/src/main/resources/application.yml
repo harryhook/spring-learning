@@ -1,0 +1,6 @@
+server:
+  port: 8081
+#选择要激活那个环境块
+spring:
+  profiles:
+    active: dev

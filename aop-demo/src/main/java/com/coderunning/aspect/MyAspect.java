@@ -4,20 +4,17 @@ import com.coderunning.domain.User;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 
 @Aspect
 public class MyAspect {
 
 
-    @Before(value = "execution( *  doSomething())")
+    @Before(value = "myPointCut()")
     public void doBefore(JoinPoint joinPoint) {
 
-        Object[] args = joinPoint.getArgs();
-        for (Object s : args) {
-            System.out.println(s);
-        }
-        System.out.println(joinPoint.getSignature().getDeclaringTypeName().toString() + System.currentTimeMillis());
+        System.out.println("doBefore");
     }
 //
 //    @AfterReturning(value = "execution( *   doOtherThing())", returning = "res")
@@ -37,15 +34,19 @@ public class MyAspect {
         }
         Object res = null;
         try {
-            res = pjp.proceed(new String[]{"222"});
+            res = pjp.proceed(new Integer[]{111,222});
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
         System.out.println(res);
         return res;
     }
+    @AfterReturning(value = "myPointCut())")
+    public void getAfterReturning() {
+        System.out.println("after returning");
+    }
 
-    @Pointcut(value ="execution( *   doOtherThing(..))" )
+    @Pointcut(value ="execution(public int com.coderunning.service.MyCaculator.*(..))" )
     public void myPointCut() {
 
     }
