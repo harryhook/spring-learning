@@ -11,17 +11,11 @@ import javax.inject.Inject;
 
 @Service
 public class ColorService {
-    @Autowired
-    private ColorDao colorDao2;
 
-    public void printColor() {
-        System.out.println(colorDao2);
-    }
+    @Resource
+    private IocService iocService;
 
-    @Override
-    public String toString() {
-        return "ColorService{" +
-                "colorDao=" + colorDao2 +
-                '}';
+    public IocService getIocService() {
+        return iocService;
     }
 }

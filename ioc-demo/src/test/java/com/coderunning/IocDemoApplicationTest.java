@@ -4,6 +4,8 @@ import com.coderunning.config.*;
 import com.coderunning.dao.ColorDao;
 import com.coderunning.domain.Person;
 import com.coderunning.service.ColorService;
+import com.coderunning.service.IocService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -15,6 +17,7 @@ import javax.sql.DataSource;
 import java.util.Map;
 
 @SpringBootTest
+@Slf4j
 public class IocDemoApplicationTest {
 
 
@@ -28,6 +31,19 @@ public class IocDemoApplicationTest {
 
         System.out.println(person);
     }
+
+    @Test
+    public void circleTest() {
+        ApplicationContext context = new AnnotationConfigApplicationContext("com.coderunning.service");
+        IocService iocService = context.getBean(IocService.class);
+        ColorService colorService = context.getBean(ColorService.class);
+        log.info("{}", iocService.getColorService());
+        log.info("{}", colorService.getIocService());
+
+    }
+
+
+
 
     @Test
     public void testAnnotation() {

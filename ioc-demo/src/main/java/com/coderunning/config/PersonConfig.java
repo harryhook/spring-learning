@@ -4,11 +4,11 @@ import com.coderunning.condition.LinuxCondition;
 import com.coderunning.condition.MacCondition;
 import com.coderunning.condition.WindowsCondition;
 import com.coderunning.domain.Person;
-import com.coderunning.filter.MyFilter;
-import com.coderunning.service.IocService;
-import org.springframework.context.annotation.*;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class PersonConfig {
@@ -28,10 +28,11 @@ public class PersonConfig {
     }
 
     @Bean("linus")
-    @Conditional(LinuxCondition .class)
+    @Conditional(LinuxCondition.class)
     public Person linuxParent() {
         return new Person(60, "Linux");
     }
+
     @Bean("steve")
     @Conditional(MacCondition.class)
     public Person macParent() {
