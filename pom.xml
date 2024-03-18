@@ -11,6 +11,8 @@
         <module>spring-transaction-demo</module>
         <module>spring-data-demo</module>
         <module>thread-demo</module>
+        <module>system-design</module>
+        <module>rpc-demo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
