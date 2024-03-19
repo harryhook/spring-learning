@@ -5,12 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * @author haowei.chen
- * @since 2024/3/18 19:57
- */
-@Target(ElementType.TYPE)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Server {
-    int port() default 8080;
+public @interface RpcReference {
+    String value() default "";
 }
