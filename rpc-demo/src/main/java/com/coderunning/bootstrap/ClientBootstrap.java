@@ -1,20 +1,25 @@
 package com.coderunning.bootstrap;
 
+import com.coderunning.annotation.RpcReference;
 import com.coderunning.provider.HelloService;
-import com.coderunning.proxy.RpcProxy;
-import com.coderunning.req.RpcRequest;
+import org.springframework.stereotype.Component;
 
 /**
  * @author haowei.chen
  * @since 2024/3/18 19:59
  */
 // ClientBootstrap.java
+@Component
 public class ClientBootstrap {
-    public static void main(String[] args) {
-        // 创建代理对象
-        HelloService helloService = RpcProxy.createProxy(HelloService.class, "localhost", 8088);
-        // 通过代理对象调用远程方法
+
+    @RpcReference
+    public HelloService helloService;
+
+    // 这里应该是 Spring 的启动方法，而不是 main 方法
+    public void callService() {
+        // 调用远程服务
         String result = helloService.sayHello("World");
         System.out.println(result);
     }
+
 }
