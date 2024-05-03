@@ -5,9 +5,11 @@ import com.coderunning.dao.SalesDao;
 import com.coderunning.domain.Goods;
 import com.coderunning.domain.Sales;
 import com.coderunning.service.BuyGoodsService;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class BuyGoodsServiceImpl implements BuyGoodsService {
 
     private SalesDao salesDao;
